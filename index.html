@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stressful Instincts</title>
+</head>
+<body>
+<script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+
+    /**
+     * Preload images here just in case
+     */
+
+    if (document.images) {
+        img1 = new Image();
+        img2 = new Image();
+        img3 = new Image();
+
+        img1.src = "char_list.png";
+        img2.src = "p2_highlight.png";
+        img3.src = "p2_highlight.png";
+    }
+
+    //--><!]]>
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<!-- Engine -->
+<script src="script/main.js"></script>
+<script src="script/game.js"></script>
+<script src="script/scene.js"></script>
+
+<!-- Components -->
+<script src="script/comp/vector.js"></script>
+<script src="script/comp/game_object.js"></script>
+<script src="script/comp/frame.js"></script>
+
+<!-- User defined scenes -->
+<script src="script/scenes/menu_scene.js"></script>
+<script src="script/scenes/game_scene.js"></script>
+
+<canvas id="my_canvas" width="1024" height="768"></canvas>
+
+</body>
+</html>
