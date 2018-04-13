@@ -1,7 +1,7 @@
 class GameScene extends Scene {
 
     begin() {
-
+	//fuck you
     }
 
     event() {
