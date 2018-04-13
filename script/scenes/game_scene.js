@@ -1,11 +1,10 @@
 class GameScene extends Scene {
 
     begin() {
-
+        super.begin();
     }
 
     event() {
-
     }
 
     update() {

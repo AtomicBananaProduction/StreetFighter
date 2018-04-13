@@ -15,7 +15,7 @@ class Scene {
     begin() {
     }
 
-    // Use for input handle
+    // Register event
     event() {
     }
 
