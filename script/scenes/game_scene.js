@@ -20,12 +20,7 @@ class GameScene extends Scene {
     }
 	//Mountain people
     update() {
-		
-<<<<<<< HEAD
-=======
 		background.update();
-
->>>>>>> 93930bfb5c873da3232b5299921adb378f4e3944
     }
 
     render() {
