@@ -6,7 +6,7 @@ class GameScene extends Scene {
 
     event() {
     }
-
+	//Mountain people
     update() {
 
     }
