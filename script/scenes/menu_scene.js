@@ -5,6 +5,8 @@ let char_list_r; // Right character list
 let player1_select; // Left player selection
 let player2_select; // Right player selection
 
+let ani_test;
+
 // Player choice
 let o_x;
 
@@ -47,6 +49,20 @@ class MenuScene extends Scene {
             0.0,
             false);
 
+        ani_test = new GameObject(
+            new Vector2D(300, 300),
+            "assets/ani_test.png",
+            0.0,
+            0.0,
+            false);
+
+        let scroll_animation = new SFAnimation(5);
+        scroll_animation.addFrame(new Frame(0, 0, 50, 50));
+        scroll_animation.addFrame(new Frame(50, 0, 50, 50));
+        scroll_animation.addFrame(new Frame(100, 0, 50, 50));
+
+        ani_test.addAnimation(scroll_animation);
+
         // GameObject begin();
         // All objects you created must call begin here
         char_list_l.begin();
@@ -54,6 +70,8 @@ class MenuScene extends Scene {
 
         player1_select.begin();
         player2_select.begin();
+
+        ani_test.begin();
 
         player_choice = 0;
     }
@@ -84,6 +102,8 @@ class MenuScene extends Scene {
         player1_select.update();
         player2_select.update();
 
+        ani_test.update();
+
         // Insert extra logic, for example if you wanted to move an object
     }
 
@@ -108,6 +128,8 @@ class MenuScene extends Scene {
 
         char_list_l.render();
         char_list_r.render();
+
+        ani_test.render();
     }
 
     end() {
