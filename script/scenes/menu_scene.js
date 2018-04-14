@@ -80,6 +80,10 @@ class MenuScene extends Scene {
         // Register event
         window.addEventListener("keydown", function (e) {
 
+            if (e.keyCode === 13) {
+                switchScene(new GameScene());
+            }
+
             if (e.keyCode === 65) {
                 if (player_choice === 0) player_choice = MAX_PLAYER_CHOICE;
                 else player_choice--;
