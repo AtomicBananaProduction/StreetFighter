@@ -1,5 +1,5 @@
 class GameScene extends Scene {
-
+	
     begin() {
         super.begin();
     }
@@ -8,7 +8,7 @@ class GameScene extends Scene {
     }
 	//Mountain people
     update() {
-
+		
     }
 
     render() {
