@@ -34,7 +34,6 @@ function init() {
 }
 
 function update() {
-    current_scene.event(); // Handle event
     current_scene.update(); // Update
     current_scene.render();
 }
@@ -46,4 +45,5 @@ function switchScene(scene) {
     }
     current_scene = scene; // Assign new scene to current scenes
     current_scene.begin(); // Call begin method
+    current_scene.event();
 }

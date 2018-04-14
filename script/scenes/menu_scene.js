@@ -5,9 +5,16 @@ let char_list_r; // Right character list
 let player1_select; // Left player selection
 let player2_select; // Right player selection
 
+// Player choice
+let o_x;
+
+let player_choice;
+let MAX_PLAYER_CHOICE = 4;
 class MenuScene extends Scene {
 
     begin() {
+        super.begin();
+
         // Please ONLY initialize data here
         // Example:
         char_list_l = new GameObject(
@@ -24,8 +31,10 @@ class MenuScene extends Scene {
             0.0,
             false);
 
+        o_x = 15;
+
         player1_select = new GameObject(
-            new Vector2D(15, 115),
+            new Vector2D(o_x, 115),
             "assets/p1_highlight.png",
             0.0,
             0.0,
@@ -45,10 +54,26 @@ class MenuScene extends Scene {
 
         player1_select.begin();
         player2_select.begin();
+
+        player_choice = 0;
     }
 
     event() {
-        // Event is for key listening if this even works thanks to javascript's relatedness
+        // Register event
+        window.addEventListener("keydown", function (e) {
+
+            if (e.keyCode === 65) {
+                if (player_choice === 0) player_choice = MAX_PLAYER_CHOICE;
+                else player_choice--;
+
+                player1_select.position = new Vector2D(o_x + 44 * player_choice, 115);
+            } else if (e.keyCode === 68) {
+                if (player_choice === MAX_PLAYER_CHOICE) player_choice = 0;
+                else player_choice++;
+
+                player1_select.position = new Vector2D(o_x + 44 * player_choice, 115);
+            }
+        }, false);
     }
 
     update() {
@@ -87,5 +112,6 @@ class MenuScene extends Scene {
 
     end() {
         // If there is any end scene logic, insert here
+        //window.removeEventListener("keyup", this.keyUpHandler, false);
     }
 }
