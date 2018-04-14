@@ -14,7 +14,7 @@ class GameObject {
 
         this.currentAnimation = 0; // Current animation index
 
-        this.animations = new Array(); // Animation list
+        this.animations = []; // Animation list
     }
 
     begin() {
@@ -40,7 +40,7 @@ class GameObject {
             (
                 this.sprite,
                 ani.x, ani.y, ani.w, ani.h,
-                0, 0, ani.w, ani.h
+                this.position.x, this.position.y, ani.w, ani.h
             );
         }
     }
