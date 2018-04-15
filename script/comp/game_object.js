@@ -15,6 +15,8 @@ class GameObject {
         this.currentAnimation = 0; // Current animation index
 
         this.animations = []; // Animation list
+
+        this.renderScale = 1;
     }
 
     begin() {
@@ -23,6 +25,13 @@ class GameObject {
     }
 
     update() {
+        if (this.enableGravity) { // Enable gravity
+            if (this.position.y < 450) {
+                this.position.y += 30;
+            } else {
+                this.position.y = 480;
+            }
+        }
     }
 
     render() {
@@ -40,7 +49,7 @@ class GameObject {
             (
                 this.sprite,
                 ani.x, ani.y, ani.w, ani.h,
-                this.position.x, this.position.y, ani.w, ani.h
+                this.position.x, this.position.y, ani.w * this.renderScale, ani.h * this.renderScale
             );
         }
     }

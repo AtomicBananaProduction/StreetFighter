@@ -14,6 +14,15 @@ class SFAnimation {
         this.maxFrame++;
     }
 
+    addHorizontalFrames(begin_frame, count) {
+        this.addFrame(begin_frame);
+
+        for (let i = 1; i < count; i++) {
+            let nextFrame = new Frame(begin_frame.x + begin_frame.w * i, begin_frame.y, begin_frame.w, begin_frame.h);
+            this.addFrame(nextFrame);
+        }
+    }
+
     nextFrame() {
         let result = this.frames[this.currentFrame];
 

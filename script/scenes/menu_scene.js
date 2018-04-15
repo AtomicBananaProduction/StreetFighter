@@ -138,6 +138,5 @@ class MenuScene extends Scene {
 
     end() {
         // If there is any end scene logic, insert here
-        //window.removeEventListener("keyup", this.keyUpHandler, false);
     }
 }
