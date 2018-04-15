@@ -12,7 +12,16 @@ class GameScene extends Scene {
         0.0, // Gravity IGNORE UNTIL WE GET TO PLAYER
         false); // If enable gravity SET TO FALSE FOR NOW
 		
+        placebox = new GameObject(
+        new Vector2D(0, 0), // Object's position
+        "assets/mountainpeoplebox.png", // Image's path
+        0.0, // Mass of object IGNORE UNTIL WE GET TO PLAYER
+        0.0, // Gravity IGNORE UNTIL WE GET TO PLAYER
+        false); // If enable gravity SET TO FALSE FOR NOW
+        
 		background.begin();
+        placebox.begin();
+        
 		 
     }
 
@@ -21,12 +30,14 @@ class GameScene extends Scene {
 	//Mountain people
     update() {
 		background.update();
+        placebox.update();
     }
 
     render() {
         super.render();
 		
 		background.render();
+        placebox.render();
     }
 
     end() {
