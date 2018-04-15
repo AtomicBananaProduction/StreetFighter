@@ -32,6 +32,19 @@ function buildCharacterGameObject(id) {
 
             char.renderScale = 5; // Set scale to 5 so that he looks big
             break;
+        case 1: // jago
+
+            char = new GameObject(
+                new Vector2D(0, 0), // Object's position
+                "assets/char/boxer.png", // Image's path
+                5.0,
+                -9.8,
+                true);
+
+            ani_idle = new SFAnimation(1);
+            ani_idle.addHorizontalFrames(new Frame(0, 0, 37, 49), 6); // Add a row of animation (6 frames)
+
+            break;
     }
 
     // Add all universal animations
