@@ -20,18 +20,30 @@ function buildCharacterGameObject(id) {
         case 0: // Boxer logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
-                "assets/char/boxer.png", // Image's path
+                "assets/char/tj.png", // Image's path
                 5.0,
                 -9.8,
                 true);
 
             ani_idle = new SFAnimation(1);
-            ani_idle.addHorizontalFrames(new Frame(0, 0, 37, 49), 6); // Add a row of animation (6 frames)
+            ani_idle.addHorizontalFrames(new Frame(0, 0, 70, 100), 5); // Add a row of animation (6 frames)
 
             ani_walk = new SFAnimation(1);
-            ani_walk.addHorizontalFrames(new Frame(0, 85, 37, 49), 7);
+            ani_walk.addHorizontalFrames(new Frame(0, 100, 70, 100), 7);
+			
+			ani_punch = new SFAnimation(1);
+            ani_punch.addHorizontalFrames(new Frame(0, 200, 70, 100), 5);
+			
+			ani_kick = new SFAnimation(1);
+            ani_kick.addHorizontalFrames(new Frame(0, 300, 70, 100), 5);
+			
+			ani_jump = new SFAnimation(1);
+            ani_jump.addHorizontalFrames(new Frame(0, 400, 70, 100), 4);
+			
+			ani_death = new SFAnimation(1);
+            ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 3);
 
-            char.renderScale = 5; // Set scale to 5 so that he looks big
+            //char.renderScale = 5; // Set scale to 5 so that he looks big
             break;
         case 1: // jago
 
