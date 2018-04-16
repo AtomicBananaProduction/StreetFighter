@@ -29,9 +29,7 @@ function buildCharacterGameObject(id) {
             ani_idle.addHorizontalFrames(new Frame(0, 0, 70, 100), 5); // Add a row of animation (6 frames)
 
             ani_walk = new SFAnimation(1);
-<<<<<<< HEAD
             ani_walk.addHorizontalFrames(new Frame(0, 85, 37, 49), 7);
-=======
             ani_walk.addHorizontalFrames(new Frame(0, 100, 70, 100), 7);
 			
 			ani_punch = new SFAnimation(1);
@@ -47,7 +45,6 @@ function buildCharacterGameObject(id) {
             ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 3);
 
             //char.renderScale = 5; // Set scale to 5 so that he looks big
->>>>>>> 27485fbe0b4e2b77dcefb1fc8e902c5122def63e
             break;
         case 1: // jago
 
