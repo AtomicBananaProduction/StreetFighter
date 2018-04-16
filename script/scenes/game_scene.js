@@ -30,8 +30,6 @@ function buildCharacterGameObject(id) {
 
             ani_walk = new SFAnimation(1);
             ani_walk.addHorizontalFrames(new Frame(0, 85, 37, 49), 7);
-
-            char.renderScale = 5; // Set scale to 5 so that he looks big
             break;
         case 1: // jago
 
@@ -63,6 +61,8 @@ function buildCharacterGameObject(id) {
             break;
     }
 
+    char.renderScale = 2.5; // Set scale to 5 so that he looks big
+
     // Add all universal animations
     char.addAnimation(ani_idle);
     char.addAnimation(ani_walk);
@@ -86,7 +86,7 @@ class GameScene extends Scene {
         0.0, // Gravity IGNORE UNTIL WE GET TO PLAYER
         false); // If enable gravity SET TO FALSE FOR NOW
 
-        player1 = buildCharacterGameObject(0);
+        player1 = buildCharacterGameObject(1);
 		
 		background.begin();
         player1.begin();
