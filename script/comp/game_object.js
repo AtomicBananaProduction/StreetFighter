@@ -17,6 +17,8 @@ class GameObject {
         this.animations = []; // Animation list
 
         this.renderScale = 1;
+
+        this.freeze_after_animation_loop = false;
     }
 
     begin() {
@@ -43,7 +45,20 @@ class GameObject {
                 this.position.x, this.position.y
             );
         } else { // If there are animation list
-            let ani = this.animations[this.currentAnimation].nextFrame(); // Switch frame
+            let ani;
+
+            if (this.freeze_after_animation_loop && this.animations[this.currentAnimation].peekFrame() == null) {
+                ani = this.animations[this.currentAnimation].frames[this.animations[this.currentAnimation].currentFrame];
+            } else {
+                ani = this.animations[this.currentAnimation].nextFrame(); // Switch frame
+
+                if (ani == null) {
+                    this.animations[this.currentAnimation].nextFrame();
+
+                    this.currentAnimation = 0;
+                    ani = this.animations[this.currentAnimation].nextFrame(); // Switch frame
+                }
+            }
 
             drawing_surface.drawImage
             (

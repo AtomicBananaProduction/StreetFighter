@@ -23,6 +23,14 @@ class SFAnimation {
         }
     }
 
+    peekFrame() {
+            if (this.currentFrame + 1 > this.maxFrame - 1) {
+                return this.frames[0];
+            } else {
+                return this.frames[this.currentFrame + 1];
+            }
+    }
+
     nextFrame() {
         let result = this.frames[this.currentFrame];
 

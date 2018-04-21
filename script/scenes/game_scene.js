@@ -1,20 +1,28 @@
 let background;//Background if u couldnt tell
 
 let player1;
+let player2;
 
 // UI
 let player1_hp;
+let player2_hp;
+
+// Event handle
+let is_keydown = false;
+
+let animation_time = 0;
 
 function buildCharacterGameObject(id) {
     let char;
 
     // Animations
-    let ani_idle;
-    let ani_walk;
-    let ani_punch;
-    let ani_kick;
-	let ani_jump;//added jump
-    let ani_death;
+    let ani_idle; // 0
+    let ani_walk; // 1
+    let ani_punch;// 2
+    let ani_kick; // 3
+	let ani_jump; // 4
+    let ani_death;// 5
+    let ani_block;// 6
 
     switch (id) {
         case 0: // Boxer logic
@@ -34,15 +42,19 @@ function buildCharacterGameObject(id) {
 			
 			ani_punch = new SFAnimation(1);
             ani_punch.addHorizontalFrames(new Frame(0, 200, 70, 100), 5);
+            ani_punch.addFrame(null);
 			
 			ani_kick = new SFAnimation(1);
             ani_kick.addHorizontalFrames(new Frame(0, 300, 70, 100), 5);
+            ani_kick.addFrame(null);
 			
 			ani_jump = new SFAnimation(1);
             ani_jump.addHorizontalFrames(new Frame(0, 400, 70, 100), 4);
+            ani_jump.addFrame(null);
 			
 			ani_death = new SFAnimation(1);
             ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 3);
+            ani_death.addFrame(null);
 
             //char.renderScale = 5; // Set scale to 5 so that he looks big
             break;
@@ -63,15 +75,19 @@ function buildCharacterGameObject(id) {
 			
 			ani_punch = new SFAnimation(1);
             ani_punch.addHorizontalFrames(new Frame(0, 200, 70, 100), 5);
+            ani_punch.addFrame(null);
 			
 			ani_kick = new SFAnimation(1);
             ani_kick.addHorizontalFrames(new Frame(0, 300, 70, 100), 6);
+            ani_kick.addFrame(null);
 			
 			ani_jump = new SFAnimation(1);
             ani_jump.addHorizontalFrames(new Frame(0, 400, 70, 100), 4);
+            ani_jump.addFrame(null);
 			
 			ani_death = new SFAnimation(1);
             ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 4);
+            ani_death.addFrame(null);
 
             break;
     }
@@ -101,19 +117,27 @@ class GameScene extends Scene {
         0.0, // Gravity IGNORE UNTIL WE GET TO PLAYER
         false); // If enable gravity SET TO FALSE FOR NOW
 
-        player1 = buildCharacterGameObject(1);
+        player1 = buildCharacterGameObject(1); // Player
+        player2 = buildCharacterGameObject(0); // AI
+        player1.position = new Vector2D(0, 480);
+        player2.position = new Vector2D(820, 480);
 		
 		background.begin();
         player1.begin();
+        player2.begin();
 
         //UI
         player1_hp = new HealthBar(new Vector2D(30, 30), 250, 30, 100);
+        player2_hp = new HealthBar(new Vector2D(c_width - 250 - 30, 30), 250, 30, 100);
 
     }
 
     event() {
         // Register event
         window.addEventListener("keydown", function (e) {
+            if (animation_time > 0) {
+                return;
+            }
 
             // Player controls
             switch (e.keyCode) {
@@ -130,21 +154,64 @@ class GameScene extends Scene {
                 case 32:
                     if (player1.position.y >= 450) {
                         player1.position.y -= 200;
+                        player1.currentAnimation = 4;
+                        animation_time = 3;
+                    }
+                    break;
+                case 81:
+                    if (!is_keydown) {
+                        player1.currentAnimation = 2;
+                        animation_time = 3;
+
+                        // In collider range
+                        if (handleCollision(player1.position, player2.position)) {
+                            player2_hp.modHP(-3);
+                        }
+                    }
+                    break;
+                case 69:
+                    if (!is_keydown) {
+                        player1.currentAnimation = 3;
+                        animation_time = 4;
+
+                        // In collider range
+                        if (handleCollision(player1.position, player2.position)) {
+                            player2_hp.modHP(-30);
+                        }
                     }
                     break;
             }
+
+            is_keydown = true;
         }, false);
 
         window.addEventListener("keyup", function (e) {
-            player1.currentAnimation = 0;
+            if (animation_time <= 0) {
+                animation_time = 0;
+
+                is_keydown = false;
+                player1.currentAnimation = 0;
+            } else {
+                animation_time--;
+            }
         }, false);
     }
 
     update() {
 		background.update();
         player1.update();
+        player2.update();
 
-        player1_hp.modHP(-1);
+        // Death handler
+        if (player1_hp.current_hp <= 0) {
+            player1.freeze_after_animation_loop = true;
+            player1.currentAnimation = 5;
+        }
+
+        if (player2_hp.current_hp <= 0) {
+            player2.freeze_after_animation_loop = true;
+            player2.currentAnimation = 5;
+        }
     }
 
     render() {
@@ -152,8 +219,10 @@ class GameScene extends Scene {
 		
 		background.render();
         player1.render();
+        player2.render();
 
         player1_hp.render();
+        player2_hp.render();
     }
 
     end() {

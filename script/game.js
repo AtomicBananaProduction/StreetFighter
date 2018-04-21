@@ -28,9 +28,8 @@ function awake() {
 ///
 function init() {
     // Init main game loop
-    // Loop is called every 1/60 second
     setInterval(function () {
-        update(); }, 60);
+        update(); }, 40);
 }
 
 function update() {
