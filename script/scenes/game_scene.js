@@ -105,6 +105,84 @@ function buildCharacterGameObject(id) {
             ani_hurt.addFrame(null);
 
             break;
+                  case 2: // Wolf logic
+            char = new GameObject(
+                new Vector2D(0, 0), // Object's position
+                "assets/char/wolf.png", // Image's path
+                5.0,
+                -9.8,
+                true);
+
+            ani_idle = new SFAnimation(1);
+            ani_idle.addHorizontalFrames(new Frame(0, 0, 28, 34), 4); // Add a row of animation (6 frames)
+
+            ani_walk = new SFAnimation(1);
+            ani_walk.addHorizontalFrames(new Frame(0, 0, 28, 34), 4);
+
+            ani_punch = new SFAnimation(1);
+            ani_punch.addHorizontalFrames(new Frame(0, 72, 28, 34, 6);
+            ani_punch.addFrame(null);
+
+            ani_kick = new SFAnimation(1);
+            ani_kick.addHorizontalFrames(new Frame(0, 342, 28, 34), 5);
+            ani_kick.addFrame(null);
+
+            ani_jump = new SFAnimation(1);
+            ani_jump.addHorizontalFrames(new Frame(0, 213, 28, 34), 10);
+            ani_jump.addFrame(null);
+
+            ani_death = new SFAnimation(1);
+            ani_death.addHorizontalFrames(new Frame(0, 404, 28, 34), 3);
+            ani_death.addFrame(null);
+
+            ani_hurt = new SFAnimation(1);
+            ani_hurt.addHorizontalFrames(new Frame(196, 404, 28, 34), 2);
+            ani_hurt.addFrame(null);
+
+            ani_block = new SFAnimation(1);
+            ani_block.addFrame(new Frame(0, 34, 28, 34), 6);
+
+            //char.renderScale = 5; // Set scale to 5 so that he looks big
+            break;
+            case 3: // Chief Thunder logic
+            char = new GameObject(
+                new Vector2D(0, 0), // Object's position
+                "assets/char/chief.png", // Image's path
+                5.0,
+                -9.8,
+                true);
+
+            ani_idle = new SFAnimation(1);
+            ani_idle.addHorizontalFrames(new Frame(0, 0, 24, 36), 3); // Add a row of animation (6 frames)
+
+            ani_walk = new SFAnimation(1);
+            ani_walk.addHorizontalFrames(new Frame(240, 0, 24, 36), 6);
+
+            ani_punch = new SFAnimation(1);
+            ani_punch.addHorizontalFrames(new Frame(0, 72, 24, 36, 5);
+            ani_punch.addFrame(null);
+
+            ani_kick = new SFAnimation(1);
+            ani_kick.addHorizontalFrames(new Frame(0, 252, 24, 36), 6);
+            ani_kick.addFrame(null);
+
+            ani_jump = new SFAnimation(1);
+            ani_jump.addHorizontalFrames(new Frame(408, 0, 24, 36), 5);
+            ani_jump.addFrame(null);
+
+            ani_death = new SFAnimation(1);
+            ani_death.addHorizontalFrames(new Frame(0, 324, 24, 36), 5);
+            ani_death.addFrame(null);
+
+            ani_hurt = new SFAnimation(1);
+            ani_hurt.addHorizontalFrames(new Frame(0, 360, 24, 36), 2);
+            ani_hurt.addFrame(null);
+
+            ani_block = new SFAnimation(1);
+            ani_block.addFrame(new Frame(0, 36, 24, 36), 3);
+
+            //char.renderScale = 5; // Set scale to 5 so that he looks big
+            break;
         case 4: // Inverted Boxer logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
