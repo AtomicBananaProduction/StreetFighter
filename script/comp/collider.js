@@ -1,14 +1,14 @@
 function handleCollision(pos1, pos2){
         //using a single diameter for the circle
-        let collisionDiameter = 120;
+        let radius = 60;
 
-        let mag1 = Math.sqrt(Math.pow(pos1.x + 35, 2) + Math.pow(pos1.y + 50, 2));
-        let mag2 = Math.sqrt(Math.pow(pos2.x + 35, 2) + Math.pow(pos2.y + 50, 2));
+        let d_x = Math.pow(pos2.x - pos1.x, 2);
+        let d_y = Math.pow(pos2.y - pos1.y, 2);
 
-        let ac_distance = Math.abs(mag2 - mag1);
+        let distance = Math.abs(Math.sqrt(d_x + d_y));
 
         //Checks if the distance between each object is less than the sum of the radii's
-        if (ac_distance <= collisionDiameter)
+        if (distance <= radius)
         {
             return true;
         }
