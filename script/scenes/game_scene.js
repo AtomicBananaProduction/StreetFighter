@@ -105,83 +105,80 @@ function buildCharacterGameObject(id) {
             ani_hurt.addFrame(null);
 
             break;
-                  case 2: // Wolf logic
+        case 2: // Wolf logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
-                "assets/char/wolf.png", // Image's path
+                "assets/char/Wulf_SpriteSheet.png", // Image's path
                 5.0,
                 -9.8,
                 true);
 
             ani_idle = new SFAnimation(1);
-            ani_idle.addHorizontalFrames(new Frame(0, 0, 28, 34), 4); // Add a row of animation (6 frames)
+            ani_idle.addHorizontalFrames(new Frame(0, 0, 70, 100), 4); // Add a row of animation (6 frames)
 
             ani_walk = new SFAnimation(1);
-            ani_walk.addHorizontalFrames(new Frame(0, 0, 28, 34), 4);
+            ani_walk.addHorizontalFrames(new Frame(0, 100, 70, 100), 6);
 
             ani_punch = new SFAnimation(1);
-            ani_punch.addHorizontalFrames(new Frame(0, 72, 28, 34, 6);
+            ani_punch.addHorizontalFrames(new Frame(0, 200, 70, 100), 5);
             ani_punch.addFrame(null);
 
             ani_kick = new SFAnimation(1);
-            ani_kick.addHorizontalFrames(new Frame(0, 342, 28, 34), 5);
+            ani_kick.addHorizontalFrames(new Frame(0, 300, 70, 100), 4);
             ani_kick.addFrame(null);
 
             ani_jump = new SFAnimation(1);
-            ani_jump.addHorizontalFrames(new Frame(0, 213, 28, 34), 10);
+            ani_jump.addHorizontalFrames(new Frame(0, 400, 70, 100), 4);
             ani_jump.addFrame(null);
 
             ani_death = new SFAnimation(1);
-            ani_death.addHorizontalFrames(new Frame(0, 404, 28, 34), 3);
+            ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 3);
             ani_death.addFrame(null);
 
             ani_hurt = new SFAnimation(1);
-            ani_hurt.addHorizontalFrames(new Frame(196, 404, 28, 34), 2);
+            ani_hurt.addHorizontalFrames(new Frame(0, 600, 70, 100), 2);
             ani_hurt.addFrame(null);
 
             ani_block = new SFAnimation(1);
-            ani_block.addFrame(new Frame(0, 34, 28, 34), 6);
+            ani_block.addFrame(new Frame(0, 500, 70, 100));
 
-            //char.renderScale = 5; // Set scale to 5 so that he looks big
             break;
-            case 3: // Chief Thunder logic
+        case 3: // idk his name logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
-                "assets/char/chief.png", // Image's path
+                "assets/char/fulgore_SpriteSheet.png", // Image's path
                 5.0,
                 -9.8,
                 true);
 
             ani_idle = new SFAnimation(1);
-            ani_idle.addHorizontalFrames(new Frame(0, 0, 24, 36), 3); // Add a row of animation (6 frames)
+            ani_idle.addHorizontalFrames(new Frame(0, 0, 70, 100), 5); // Add a row of animation (6 frames)
 
             ani_walk = new SFAnimation(1);
-            ani_walk.addHorizontalFrames(new Frame(240, 0, 24, 36), 6);
+            ani_walk.addHorizontalFrames(new Frame(0, 100, 70, 100), 6);
 
             ani_punch = new SFAnimation(1);
-            ani_punch.addHorizontalFrames(new Frame(0, 72, 24, 36, 5);
+            ani_punch.addHorizontalFrames(new Frame(0, 200, 70, 100), 5);
             ani_punch.addFrame(null);
 
             ani_kick = new SFAnimation(1);
-            ani_kick.addHorizontalFrames(new Frame(0, 252, 24, 36), 6);
+            ani_kick.addHorizontalFrames(new Frame(0, 300, 70, 100), 3);
             ani_kick.addFrame(null);
 
             ani_jump = new SFAnimation(1);
-            ani_jump.addHorizontalFrames(new Frame(408, 0, 24, 36), 5);
+            ani_jump.addHorizontalFrames(new Frame(0, 400, 70, 100), 3);
             ani_jump.addFrame(null);
 
             ani_death = new SFAnimation(1);
-            ani_death.addHorizontalFrames(new Frame(0, 324, 24, 36), 5);
+            ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 3);
             ani_death.addFrame(null);
 
             ani_hurt = new SFAnimation(1);
-            ani_hurt.addHorizontalFrames(new Frame(0, 360, 24, 36), 2);
+            ani_hurt.addHorizontalFrames(new Frame(0, 600, 70, 100), 2);
             ani_hurt.addFrame(null);
 
             ani_block = new SFAnimation(1);
-            ani_block.addFrame(new Frame(0, 36, 24, 36), 3);
-
-            //char.renderScale = 5; // Set scale to 5 so that he looks big
+            ani_block.addFrame(new Frame(0, 500, 70, 100));
             break;
         case 4: // Inverted Boxer logic
             char = new GameObject(
@@ -251,7 +248,7 @@ class GameScene extends Scene {
             0.0, // Gravity IGNORE UNTIL WE GET TO PLAYER
             false); // If enable gravity SET TO FALSE FOR NOW
 
-        player1 = buildCharacterGameObject(1); // Player
+        player1 = buildCharacterGameObject(3); // Player
         player2 = buildCharacterGameObject(4); // AI
         player1.position = new Vector2D(0, 480);
         player2.position = new Vector2D(820, 480);
