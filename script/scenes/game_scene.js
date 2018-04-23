@@ -18,9 +18,13 @@ let action_timer = 0;
 let speed = -10;
 
 let ai_blocking = false;
+let player_blocking = false;
 
 // Game control
 let is_game_over = false;
+let end_game_msg;
+
+let end_game_timer = 0;
 
 function buildCharacterGameObject(id) {
     let char;
@@ -109,6 +113,9 @@ function buildCharacterGameObject(id) {
             ani_hurt = new SFAnimation(1);
             ani_hurt.addHorizontalFrames(new Frame(0, 600, 70, 100), 2);
             ani_hurt.addFrame(null);
+
+            ani_block = new SFAnimation(1);
+            ani_block.addFrame(new Frame(0, 500, 70, 100));
 
             break;
         case 3: // Wolf logic
@@ -280,6 +287,8 @@ class GameScene extends Scene {
                 return;
             }
 
+            if (end_game_timer > 0) return;
+
             // Player controls
             switch (e.keyCode) {
                 // Walk
@@ -308,7 +317,7 @@ class GameScene extends Scene {
                         if (handleCollision(player1.position, player2.position)) {
                             if (Math.floor((Math.random() * 2)) === 0) {
                                 if (!ai_blocking) {
-                                    player2_hp.modHP(-10);
+                                    player2_hp.modHP(Math.floor((Math.random() * -13) - 8));
 
                                     // AI hurt animation
                                     player2.currentAnimation = 6;
@@ -332,7 +341,7 @@ class GameScene extends Scene {
                         if (handleCollision(player1.position, player2.position)) {
                             if (Math.floor((Math.random() * 2)) === 0) {
                                 if (!ai_blocking) {
-                                    player2_hp.modHP(-16);
+                                    player2_hp.modHP(Math.floor((Math.random() * -20) - 16));
 
                                     // AI hurt animation
                                     player2.currentAnimation = 6;
@@ -347,12 +356,18 @@ class GameScene extends Scene {
                         }
                     }
                     break;
+                case 70:
+                    player_blocking = true;
+                    player1.currentAnimation = 7;
+                    break;
             }
 
             is_keydown = true;
         }, false);
 
         window.addEventListener("keyup", function (e) {
+            player_blocking = false;
+
             if (animation_time <= 0) {
                 animation_time = 0;
 
@@ -366,16 +381,30 @@ class GameScene extends Scene {
 
     update() {
         // Death handler
-        if (player1_hp.current_hp <= 0) {
+        if (end_game_timer > 0) {
+            end_game_timer--;
+        } else {
+            if (is_game_over) {
+                switchScene(new GameOverScene(end_game_msg))
+            }
+        }
+
+        if (player1_hp.current_hp <= 0 && !is_game_over) {
             player1.freeze_after_animation_loop = true;
             player1.currentAnimation = 5;
             is_game_over = true;
+
+            end_game_timer = 60;
+            end_game_msg = "Game over! You lost!"
         }
 
-        if (player2_hp.current_hp <= 0) {
+        if (player2_hp.current_hp <= 0 && !is_game_over) {
             player2.freeze_after_animation_loop = true;
             player2.currentAnimation = 5;
             is_game_over = true;
+
+            end_game_timer = 60;
+            end_game_msg = "You won the game!"
         }
 
         if (is_game_over) return;
@@ -400,17 +429,23 @@ class GameScene extends Scene {
                 if (Math.floor((Math.random() * 2)) === 0) {
                     action_timer = 30;
                     player2.currentAnimation = 2; // punch
-                    player1_hp.modHP(-10);
 
-                    player1.currentAnimation = 6;
-                    animation_time = 3;
+                    if (!player_blocking) {
+                        player1_hp.modHP(Math.floor((Math.random() * -13) - 8));
+
+                        player1.currentAnimation = 6;
+                        animation_time = 2;
+                    }
                 } else {
                     action_timer = 30;
                     player2.currentAnimation = 3; // kick
-                    player1_hp.modHP(-16);
 
-                    player1.currentAnimation = 6;
-                    animation_time = 3;
+                    if (!player_blocking) {
+                        player1_hp.modHP(Math.floor((Math.random() * -20) - 16));
+
+                        player1.currentAnimation = 6;
+                        animation_time = 2;
+                    }
                 }
             } else {
                 player2.currentAnimation = 1;
