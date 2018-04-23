@@ -36,7 +36,7 @@ function buildCharacterGameObject(id) {
     let ani_block;// 7
 
     switch (id) {
-        case 0: // Boxer logic
+        case 1: // Boxer logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
                 "assets/char/tj.png", // Image's path
@@ -48,7 +48,6 @@ function buildCharacterGameObject(id) {
             ani_idle.addHorizontalFrames(new Frame(0, 0, 70, 100), 5); // Add a row of animation (6 frames)
 
             ani_walk = new SFAnimation(1);
-            ani_walk.addHorizontalFrames(new Frame(0, 85, 37, 49), 7);
             ani_walk.addHorizontalFrames(new Frame(0, 100, 70, 100), 7);
 
             ani_punch = new SFAnimation(1);
@@ -67,9 +66,16 @@ function buildCharacterGameObject(id) {
             ani_death.addHorizontalFrames(new Frame(0, 700, 70, 100), 3);
             ani_death.addFrame(null);
 
+            ani_hurt = new SFAnimation(1);
+            ani_hurt.addHorizontalFrames(new Frame(0, 600, 70, 100), 2);
+            ani_hurt.addFrame(null);
+
+            ani_block = new SFAnimation(1);
+            ani_block.addFrame(new Frame(0, 500, 70, 100));
+
             //char.renderScale = 5; // Set scale to 5 so that he looks big
             break;
-        case 1: // jago
+        case 0: // jago
 
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
@@ -105,7 +111,7 @@ function buildCharacterGameObject(id) {
             ani_hurt.addFrame(null);
 
             break;
-        case 2: // Wolf logic
+        case 3: // Wolf logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
                 "assets/char/Wulf_SpriteSheet.png", // Image's path
@@ -143,7 +149,7 @@ function buildCharacterGameObject(id) {
             ani_block.addFrame(new Frame(0, 500, 70, 100));
 
             break;
-        case 3: // idk his name logic
+        case 2: // idk his name logic
             char = new GameObject(
                 new Vector2D(0, 0), // Object's position
                 "assets/char/fulgore_SpriteSheet.png", // Image's path
@@ -237,6 +243,10 @@ function buildCharacterGameObject(id) {
 }
 
 class GameScene extends Scene {
+    constructor(id) {
+        super();
+        this.char_id = id;
+    }
 
     begin() {
         super.begin();
@@ -248,7 +258,7 @@ class GameScene extends Scene {
             0.0, // Gravity IGNORE UNTIL WE GET TO PLAYER
             false); // If enable gravity SET TO FALSE FOR NOW
 
-        player1 = buildCharacterGameObject(3); // Player
+        player1 = buildCharacterGameObject(this.char_id); // Player
         player2 = buildCharacterGameObject(4); // AI
         player1.position = new Vector2D(0, 480);
         player2.position = new Vector2D(820, 480);

@@ -11,7 +11,7 @@ let ani_test;
 let o_x;
 
 let player_choice;
-let MAX_PLAYER_CHOICE = 4;
+let MAX_PLAYER_CHOICE = 3;
 class MenuScene extends Scene {
 
     begin() {
@@ -28,7 +28,7 @@ class MenuScene extends Scene {
 
         char_list_r = new GameObject(
             new Vector2D(c_width - (208 + 20), 120),
-            "assets/char_list.png",
+            "assets/ai_char_list.png",
             0.0,
             0.0,
             false);
@@ -81,7 +81,7 @@ class MenuScene extends Scene {
         window.addEventListener("keydown", function (e) {
 
             if (e.keyCode === 13) {
-                switchScene(new GameScene());
+                switchScene(new GameScene(player_choice));
             }
 
             if (e.keyCode === 65) {
